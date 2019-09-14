@@ -22,7 +22,8 @@ app.post("/upload", (req, res) => {
 app.get("/upload", (req, res) => {
   const fileNames = fs.readdirSync(uploadLocation);
   console.log("filenames", fileNames);
-  res.send(JSON.stringify(fileNames.map()));
+  // res.send(JSON.stringify(fileNames.map(x => `/${uploadDir}/${x}`)));
+  res.send(JSON.stringify(fileNames.map(x => `${x}`)));
 });
 
 console.log(fs.readdirSync(uploadLocation));
