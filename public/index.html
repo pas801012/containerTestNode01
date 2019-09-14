@@ -1,0 +1,53 @@
+<head>
+    <title>
+        HELLO WORLD
+    </title>
+</head>
+
+<body>
+    <input type='text' id='upload' value='/upload' /><br /><input type='file' id='file' />
+    <a href='#' id='url'></a>
+    <script>
+      alert('asdkfj')
+      async  function getImages(){
+          console.log( 'getImageArguments' )
+          let fileNames = await (await fetch('/upload')).json();
+          let images = document.body.getElementById( 'images' );
+          images.innerHTML = fileNames.reduce((str,fileName) => `${str}<img src="${fileName}"/>`,"" )
+        }
+
+        getImages()
+
+        let file = document.getElementById( 'file' );
+        console.log( 'file', file );
+        file.onchange = async () => {
+          console.log( arguments )
+           let url = document.getElementById( 'url' );
+            url.innerHTML = url.href = "/" + await (await fetch(upload.value, {
+                method: "POST",
+                body: file.files[0]
+            })).text()
+            getImages()
+        }
+    </script>
+    <div id='images'>
+
+    </div>
+    
+</body>
+
+</html>
+
+<!--# <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+  </body>
+</html> #}
+-->
